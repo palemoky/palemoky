@@ -1,0 +1,99 @@
+# ===========================
+# macOS
+# ===========================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+
+# ===========================
+# Windows
+# ===========================
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ===========================
+# Linux
+# ===========================
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===========================
+# Editors & IDEs
+# ===========================
+
+# VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# JetBrains (WebStorm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Vim / Neovim
+*.swp
+*.swo
+*~
+Session.vim
+.netrwhist
+
+# Emacs
+*#
+.emacs.desktop
+.emacs.desktop.lock
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ===========================
+# Node.js
+# ===========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm
+.pnp.*
+.yarn/
+
+# ===========================
+# Logs & temp files
+# ===========================
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+*.pid
+
+# ===========================
+# Environment & Secrets
+# ===========================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
