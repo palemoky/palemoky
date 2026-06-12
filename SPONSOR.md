@@ -29,7 +29,7 @@ If this project has been helpful to you, feel free to buy me a coffee ☕
 
 Thank you for your support! Your sponsorship will help me:
 
-- ✨ Continuously update and improve the content
-- 📚 Add more algorithm solutions and pattern summaries
-- 🎨 Enhance documentation and code quality
-- ⏰ Dedicate more time to maintaining this project
+- ☕ Keep the coffee flowing and the code going
+- 🚀 Spend more time on open source projects
+- 💡 Explore new ideas and share what I learn
+- 🌱 Grow and give back to the community
