@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Palemoky</title>
+  <meta name="description" content="" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <!-- 防止暗色模式首屏闪烁 -->
+  <script>
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#top" data-brand></a>
+    <div class="nav__right">
+      <ul class="social" data-social></ul>
+      <button class="theme-toggle" type="button" aria-label="切换主题" data-theme-toggle>
+        <span class="theme-toggle__icon" data-theme-icon></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 首屏 -->
+    <section class="hero">
+      <p class="hero__badge" data-hero-badge></p>
+      <h1 class="hero__name" data-hero-name></h1>
+      <p class="hero__tagline" data-hero-tagline></p>
+      <p class="hero__bio" data-hero-bio></p>
+      <div class="hero__actions" data-hero-actions></div>
+    </section>
+
+    <!-- 技能 -->
+    <section class="section" data-skills-section>
+      <h2 class="section__title">关注领域</h2>
+      <ul class="skills" data-skills></ul>
+    </section>
+
+    <!-- 项目 -->
+    <section class="section" id="projects" data-projects-section>
+      <h2 class="section__title">精选作品</h2>
+      <div class="projects" data-projects></div>
+    </section>
+
+    <!-- 赞助 -->
+    <section class="section" id="sponsor" data-sponsor-section>
+      <h2 class="section__title" data-sponsor-title></h2>
+      <p class="section__intro" data-sponsor-intro></p>
+      <div class="sponsor" data-sponsor></div>
+    </section>
+  </main>
+
+  <footer class="footer" data-footer></footer>
+
+  <script src="assets/js/content.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
