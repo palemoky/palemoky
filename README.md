@@ -14,7 +14,7 @@
 </td>
 <td align="right" valign="top">
 
-![GitHub stats](./assets/stats.svg)
+[![GitHub stats](./assets/stats.svg)](https://palemoky.com)
 
 </td>
 </tr>
