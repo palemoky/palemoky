@@ -103,14 +103,14 @@ window.SITE_CONTENT = {
         icon: "🎈",
         items: [
           {
-            name: "趣味 WiFi",
-            description: "有趣的 WiFi 名字大全",
-            href: "https://wifi.palemoky.com",
-          },
-          {
             name: "名人堂",
             description: "铭记那些影响人类的科学家",
             href: "https://atlas.palemoky.com",
+          },
+          {
+            name: "趣味 WiFi",
+            description: "有趣的 WiFi 名字大全",
+            href: "https://wifi.palemoky.com",
           },
         ],
       },
@@ -223,14 +223,14 @@ window.SITE_CONTENT = {
         icon: "🎈",
         items: [
           {
-            name: "Fun WiFi",
-            description: "A collection of fun WiFi names",
-            href: "https://wifi.palemoky.com",
-          },
-          {
             name: "Hall of Fame",
             description: "Remembering the scientists who have shaped humanity",
             href: "https://atlas.palemoky.com",
+          },
+          {
+            name: "Fun WiFi",
+            description: "A collection of fun WiFi names",
+            href: "https://wifi.palemoky.com",
           },
         ],
       },
