@@ -7,7 +7,7 @@ Backend engineer, previously at Xiaomi and DiDi — building tools, taking notes
 - **Languages**: Go, Python, Rust, PHP
 - **Network**: TCP/IP, HTTP(S), TLS, DNS
 - **Databases**: MySQL, PostgreSQL, SQLite, Redis
-- **Toolbox**: Neovim, Git, Docker
 - **Blockchain**: Bitcoin, Ethereum
+- **Toolbox**: Neovim, Git, Docker
 
 <br clear="right" />

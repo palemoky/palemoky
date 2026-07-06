@@ -36,8 +36,8 @@ window.SITE_CONTENT = {
     { label: "操作系统", items: ["Linux", "macOS", "Windows"] },
     { label: "网络", items: ["TCP/IP", "HTTP(S)", "DNS"] },
     { label: "数据库", items: ["MySQL", "PostgreSQL", "SQLite", "Redis"] },
-    { label: "工具链", items: ["Neovim", "Git", "Docker", "CI/CD"] },
     { label: "区块链", items: ["Bitcoin", "Ethereum"] },
+    { label: "工具链", items: ["Neovim", "Git", "Docker", "CI/CD"] },
   ],
 
   // 分组卡片：每组一张卡片，组内为链接列表
