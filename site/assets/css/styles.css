@@ -49,6 +49,9 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* JS 用 hidden 属性隐藏空区块；防止被 display:flex/grid 覆盖 */
+[hidden] { display: none !important; }
+
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
@@ -94,6 +97,25 @@ a { color: inherit; text-decoration: none; }
 }
 .social a:hover { color: var(--fg); background: var(--hover); }
 .social svg { width: 17px; height: 17px; }
+
+.lang-toggle {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 6px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  border: none;
+  background: transparent;
+  color: var(--fg-faint);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.lang-toggle:hover { color: var(--fg); background: var(--hover); }
 
 .theme-toggle {
   width: 34px;
@@ -177,10 +199,8 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 7px 20px;
-  margin-bottom: 30px;
   font-size: 0.88rem;
 }
-.hero__skills:last-child { margin-bottom: 0; }
 .hero__skills dt { color: var(--fg-faint); }
 .hero__skills dd { color: var(--fg-muted); }
 .hero__skills-sep { margin: 0 9px; color: var(--fg-faint); }
@@ -189,7 +209,7 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
   display: flex;
   flex-wrap: wrap;
   gap: 22px;
-  margin-bottom: 36px;
+  margin-top: 30px;
 }
 
 /* 行动入口：克制的文字链接 */

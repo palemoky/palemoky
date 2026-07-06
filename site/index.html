@@ -9,11 +9,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>" />
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <!-- 防止暗色模式首屏闪烁 -->
+  <!-- 防止暗色模式与语言首屏闪烁：进入 body 前确定主题和语言 -->
   <script>
     (function () {
       var t = localStorage.getItem("theme");
       if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+
+      var l = localStorage.getItem("lang");
+      if (l !== "zh" && l !== "en") {
+        l = ((navigator.language || "").toLowerCase().indexOf("zh") === 0) ? "zh" : "en";
+      }
+      window.__LANG = l;
+      document.documentElement.lang = l === "zh" ? "zh-CN" : "en";
     })();
   </script>
 </head>
@@ -21,6 +28,7 @@
   <header class="nav">
     <div class="nav__right">
       <ul class="social" data-social></ul>
+      <button class="lang-toggle" type="button" aria-label="切换语言 / Switch language" data-lang-toggle></button>
       <button class="theme-toggle" type="button" aria-label="切换主题" data-theme-toggle>
         <span class="theme-toggle__icon" data-theme-icon></span>
       </button>

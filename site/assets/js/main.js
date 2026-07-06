@@ -1,11 +1,12 @@
 /**
  * 渲染逻辑 —— 把 content.js 中的数据渲染到页面。
  * 一般无需修改本文件；增删内容请编辑 content.js。
+ * 支持中英双语：默认跟随浏览器语言，可手动切换（记忆在 localStorage）。
  */
 (function () {
   "use strict";
-  var C = window.SITE_CONTENT;
-  if (!C) return;
+  var ALL = window.SITE_CONTENT;
+  if (!ALL) return;
 
   // --- 内联 SVG 图标库 ---
   var ICONS = {
@@ -38,62 +39,66 @@
     return /^https?:\/\//.test(href) ? ' target="_blank" rel="noopener"' : "";
   }
 
-  // --- 元信息 ---
-  document.title = C.meta.title || C.meta.name;
-  if (C.meta.lang) document.documentElement.lang = C.meta.lang;
-  var desc = document.querySelector('meta[name="description"]');
-  if (desc && C.meta.description) desc.setAttribute("content", C.meta.description);
+  // --- 语言（head 内联脚本已提前检测，见 index.html） ---
+  var lang = window.__LANG === "zh" ? "zh" : "en";
 
-  // --- 首屏 ---
-  $("[data-hero-badge]").textContent = C.hero.badge || "";
-  $("[data-hero-name]").textContent = C.hero.name || "";
-  $("[data-hero-tagline]").textContent = C.hero.tagline || "";
-  $("[data-hero-bio]").textContent = C.hero.bio || "";
+  // --- 渲染（切换语言时重复调用） ---
+  function render() {
+    var C = ALL[lang];
 
-  var actions = $("[data-hero-actions]");
-  if ((C.hero.actions || []).length) {
-    C.hero.actions.forEach(function (a) {
+    // 元信息
+    document.title = C.meta.title || C.meta.name;
+    if (C.meta.lang) document.documentElement.lang = C.meta.lang;
+    var desc = document.querySelector('meta[name="description"]');
+    if (desc && C.meta.description) desc.setAttribute("content", C.meta.description);
+
+    // 首屏
+    $("[data-hero-badge]").textContent = C.hero.badge || "";
+    $("[data-hero-name]").textContent = C.hero.name || "";
+    $("[data-hero-tagline]").textContent = C.hero.tagline || "";
+    $("[data-hero-bio]").textContent = C.hero.bio || "";
+
+    var actions = $("[data-hero-actions]");
+    actions.innerHTML = "";
+    actions.hidden = !(C.hero.actions || []).length;
+    (C.hero.actions || []).forEach(function (a) {
       var b = el("a", "btn" + (a.primary ? " btn--primary" : ""), a.label);
       b.href = a.href;
       if (/^https?:/.test(a.href)) { b.target = "_blank"; b.rel = "noopener"; }
       actions.appendChild(b);
     });
-  } else { actions.remove(); }
 
-  // --- 社交 ---
-  var social = $("[data-social]");
-  if ((C.social || []).length) {
-    C.social.forEach(function (s) {
+    // 社交
+    var social = $("[data-social]");
+    social.innerHTML = "";
+    social.hidden = !(C.social || []).length;
+    (C.social || []).forEach(function (s) {
       var li = el("li");
       li.innerHTML =
         '<a href="' + s.href + '" aria-label="' + s.label + '" title="' + s.label + '"' +
         ext(s.href) + ">" + (ICONS[s.icon] || ICONS.link) + "</a>";
       social.appendChild(li);
     });
-  } else { social.remove(); }
 
-  // --- 技能（首屏分类列表） ---
-  var skills = $("[data-skills]");
-  if ((C.skills || []).length) {
-    C.skills.forEach(function (g) {
+    // 技能（分类列表）
+    var skills = $("[data-skills]");
+    skills.innerHTML = "";
+    skills.hidden = !(C.skills || []).length;
+    (C.skills || []).forEach(function (g) {
       skills.appendChild(el("dt", null, g.label));
       skills.appendChild(
         el("dd", null, (g.items || []).join('<span class="hero__skills-sep">·</span>'))
       );
     });
-  } else {
-    skills.remove();
-  }
 
-  // --- 分组卡片 ---
-  var groups = $("[data-groups]");
-  if ((C.groups || []).length) {
-    C.groups.forEach(function (g) {
+    // 分组卡片
+    var groups = $("[data-groups]");
+    groups.innerHTML = "";
+    $("[data-groups-section]").hidden = !(C.groups || []).length;
+    (C.groups || []).forEach(function (g) {
       var card = el("div", "card");
-      var head = el("h2", "card__title",
-        (g.icon ? '<span class="card__icon">' + g.icon + "</span>" : "") + g.title);
-      card.appendChild(head);
-
+      card.appendChild(el("h2", "card__title",
+        (g.icon ? '<span class="card__icon">' + g.icon + "</span>" : "") + g.title));
       (g.items || []).forEach(function (p) {
         var row = el("a", "card__item");
         row.href = p.href || "#";
@@ -107,32 +112,42 @@
       });
       groups.appendChild(card);
     });
-  } else {
-    $("[data-groups-section]").remove();
+
+    // 赞助
+    var sponsorOn = C.sponsor && C.sponsor.enabled && (C.sponsor.methods || []).length;
+    $("[data-sponsor-section]").hidden = !sponsorOn;
+    if (sponsorOn) {
+      $("[data-sponsor-title]").textContent = C.sponsor.title || "";
+      $("[data-sponsor-intro]").textContent = C.sponsor.intro || "";
+      var sponsor = $("[data-sponsor]");
+      sponsor.innerHTML = "";
+      C.sponsor.methods.forEach(function (m) {
+        var item = el("div", "sponsor__item");
+        item.innerHTML =
+          '<img src="' + m.qr + '" alt="' + m.label + '" loading="lazy" />' +
+          "<span>" + m.label + "</span>";
+        sponsor.appendChild(item);
+      });
+    }
+
+    // 页脚
+    var year = new Date().getFullYear();
+    $("[data-footer]").innerHTML =
+      "<span>© " + year + " " + (C.footer.copyright || "") + "</span>" +
+      "<span>" + (C.footer.note || "") + "</span>";
+
+    // 语言切换按钮：显示「点击后将切换到的」目标语言
+    $("[data-lang-toggle]").textContent = lang === "zh" ? "EN" : "中";
   }
 
-  // --- 赞助 ---
-  if (C.sponsor && C.sponsor.enabled && (C.sponsor.methods || []).length) {
-    $("[data-sponsor-title]").textContent = C.sponsor.title || "";
-    $("[data-sponsor-intro]").textContent = C.sponsor.intro || "";
-    var sponsor = $("[data-sponsor]");
-    C.sponsor.methods.forEach(function (m) {
-      var item = el("div", "sponsor__item");
-      item.innerHTML =
-        '<img src="' + m.qr + '" alt="' + m.label + '" loading="lazy" />' +
-        "<span>" + m.label + "</span>";
-      sponsor.appendChild(item);
-    });
-  } else {
-    var ss = $("[data-sponsor-section]");
-    if (ss) ss.remove();
-  }
+  render();
 
-  // --- 页脚 ---
-  var year = new Date().getFullYear();
-  $("[data-footer]").innerHTML =
-    "<span>© " + year + " " + (C.footer.copyright || "") + "</span>" +
-    "<span>" + (C.footer.note || "") + "</span>";
+  // --- 语言切换 ---
+  $("[data-lang-toggle]").addEventListener("click", function () {
+    lang = lang === "zh" ? "en" : "zh";
+    localStorage.setItem("lang", lang);
+    render();
+  });
 
   // --- 主题切换 ---
   var root = document.documentElement;
@@ -157,7 +172,7 @@
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paintIcon);
   paintIcon();
 
-  // --- 入场动画 ---
+  // --- 入场动画（仅首次） ---
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
