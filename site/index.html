@@ -19,7 +19,6 @@
 </head>
 <body>
   <header class="nav">
-    <a class="brand" href="#top" data-brand></a>
     <div class="nav__right">
       <ul class="social" data-social></ul>
       <button class="theme-toggle" type="button" aria-label="切换主题" data-theme-toggle>
@@ -29,25 +28,19 @@
   </header>
 
   <main id="top">
-    <!-- 首屏 -->
+    <!-- 首屏：个人介绍 -->
     <section class="hero">
       <p class="hero__badge" data-hero-badge></p>
       <h1 class="hero__name" data-hero-name></h1>
       <p class="hero__tagline" data-hero-tagline></p>
       <p class="hero__bio" data-hero-bio></p>
+      <dl class="hero__skills" data-skills></dl>
       <div class="hero__actions" data-hero-actions></div>
     </section>
 
-    <!-- 技能 -->
-    <section class="section" data-skills-section>
-      <h2 class="section__title">关注领域</h2>
-      <ul class="skills" data-skills></ul>
-    </section>
-
-    <!-- 项目 -->
-    <section class="section" id="projects" data-projects-section>
-      <h2 class="section__title">精选作品</h2>
-      <div class="projects" data-projects></div>
+    <!-- 分组卡片：笔记 / 开源项目 / 小玩具 -->
+    <section class="section" id="groups" data-groups-section>
+      <div class="grid" data-groups></div>
     </section>
 
     <!-- 赞助 -->

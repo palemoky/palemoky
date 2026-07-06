@@ -44,10 +44,6 @@
   var desc = document.querySelector('meta[name="description"]');
   if (desc && C.meta.description) desc.setAttribute("content", C.meta.description);
 
-  // --- 品牌 ---
-  var brand = $("[data-brand]");
-  if (brand) brand.textContent = C.brand.name || "";
-
   // --- 首屏 ---
   $("[data-hero-badge]").textContent = C.hero.badge || "";
   $("[data-hero-name]").textContent = C.hero.name || "";
@@ -76,34 +72,43 @@
     });
   } else { social.remove(); }
 
-  // --- 技能 ---
+  // --- 技能（首屏分类列表） ---
   var skills = $("[data-skills]");
   if ((C.skills || []).length) {
-    C.skills.forEach(function (s) { skills.appendChild(el("li", null, s)); });
-  } else {
-    $("[data-skills-section]").remove();
-  }
-
-  // --- 项目 ---
-  var projects = $("[data-projects]");
-  if ((C.projects || []).length) {
-    C.projects.forEach(function (p) {
-      var row = el("a", "row");
-      row.href = p.href || "#";
-      if (/^https?:/.test(p.href || "")) { row.target = "_blank"; row.rel = "noopener"; }
-      var tags = (p.tags || []).join(" · ");
-      row.innerHTML =
-        '<div class="row__main">' +
-          '<span class="row__title">' + p.name +
-            '<span class="row__arrow">' + ICONS.arrow + "</span>" +
-          "</span>" +
-          (p.description ? '<div class="row__desc">' + p.description + "</div>" : "") +
-        "</div>" +
-        (tags ? '<span class="row__tags">' + tags + "</span>" : "");
-      projects.appendChild(row);
+    C.skills.forEach(function (g) {
+      skills.appendChild(el("dt", null, g.label));
+      skills.appendChild(
+        el("dd", null, (g.items || []).join('<span class="hero__skills-sep">·</span>'))
+      );
     });
   } else {
-    $("[data-projects-section]").remove();
+    skills.remove();
+  }
+
+  // --- 分组卡片 ---
+  var groups = $("[data-groups]");
+  if ((C.groups || []).length) {
+    C.groups.forEach(function (g) {
+      var card = el("div", "card");
+      var head = el("h2", "card__title",
+        (g.icon ? '<span class="card__icon">' + g.icon + "</span>" : "") + g.title);
+      card.appendChild(head);
+
+      (g.items || []).forEach(function (p) {
+        var row = el("a", "card__item");
+        row.href = p.href || "#";
+        if (/^https?:/.test(p.href || "")) { row.target = "_blank"; row.rel = "noopener"; }
+        row.innerHTML =
+          '<span class="card__name">' + p.name +
+            '<span class="card__arrow">' + ICONS.arrow + "</span>" +
+          "</span>" +
+          (p.description ? '<span class="card__desc">' + p.description + "</span>" : "");
+        card.appendChild(row);
+      });
+      groups.appendChild(card);
+    });
+  } else {
+    $("[data-groups-section]").remove();
   }
 
   // --- 赞助 ---
