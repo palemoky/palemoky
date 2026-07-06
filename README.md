@@ -4,7 +4,7 @@
 
 Backend engineer, previously at Xiaomi and DiDi — building tools, taking notes, and always exploring.
 
-- **Languages**: Go, Python, Rust, PHP
+- **Programming**: Go, Python, Rust, PHP
 - **Network**: TCP/IP, HTTP(S), TLS, DNS
 - **Databases**: MySQL, PostgreSQL, SQLite, Redis
 - **Blockchain**: Bitcoin, Ethereum
