@@ -1,12 +1,10 @@
 # Landing Page
 
-Palemoky 的个人主页 —— 纯静态、零构建，托管于 **Cloudflare Pages**。
-
 > 本目录的内容与仓库根目录的 GitHub Profile `README.md` **独立维护**。
 
 ## 维护内容
 
-所有页面文案、链接、项目、赞助方式都集中在一个文件里：
+所有需要维护的内容都集中在一个文件里：
 
 ```
 site/assets/js/content.js
@@ -22,7 +20,7 @@ site/
 ├── _headers                # Cloudflare Pages 缓存 / 安全头
 └── assets/
     ├── css/styles.css      # 样式（极简 / 自动暗亮切换）
-    ├── js/content.js       # ← 你要维护的内容都在这里
+    ├── js/content.js       # ← 要维护的内容都在这里
     ├── js/main.js          # 渲染逻辑（一般无需改动）
     └── img/                # 图片（含赞助二维码）
 ```
