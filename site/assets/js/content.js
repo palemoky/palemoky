@@ -136,7 +136,7 @@ window.SITE_CONTENT = {
     hero: {
       badge: "👋 Hello, I'm",
       name: "Palemoky",
-      tagline: "Six of seven wits online — the last one is still compiling 😉",
+      tagline: "It works on my machine! 😠",
       bio: "I've worked at Xiaomi and DiDi, writing Go, PHP and Python; now I'm learning Rust and English (so I can stop switching input methods while coding), and I live in Neovim. I care about product, enjoy history and science, and my head is full of odd ideas (luckily AI helps me turn them into reality fast). I've built a few small open-source projects, hope to take part in more, and want to explore embedded development and smart hardware.",
       actions: [],
     },
