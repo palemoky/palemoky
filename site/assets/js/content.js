@@ -94,7 +94,7 @@ window.SITE_CONTENT = {
           {
             name: "检测中国用户特征",
             description: "你来自中国吗？",
-            href: "https://github.com/palemoky/china-access-check",
+            href: "https://cn-check.palemoky.com",
           },
         ],
       },
@@ -212,9 +212,9 @@ window.SITE_CONTENT = {
             href: "https://github.com/palemoky/fight-the-landlord",
           },
           {
-            name: "China Access Check",
+            name: "CN Check",
             description: "Are you from China?",
-            href: "https://github.com/palemoky/china-access-check",
+            href: "https://cn-check.palemoky.com",
           },
         ],
       },
