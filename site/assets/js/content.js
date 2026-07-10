@@ -65,6 +65,11 @@ window.SITE_CONTENT = {
             description: "算法与数据结构",
             href: "https://algo.palemoky.com",
           },
+          {
+            name: "编程笔记",
+            description: "编织未来",
+            href: "https://programming.palemoky.com",
+          },
         ],
       },
       {
@@ -184,6 +189,11 @@ window.SITE_CONTENT = {
             name: "Algorithm Notes",
             description: "Algorithms & data structures",
             href: "https://algo.palemoky.com",
+          },
+          {
+            name: "Programming Notes",
+            description: "Just Coding",
+            href: "https://programming.palemoky.com",
           },
         ],
       },
