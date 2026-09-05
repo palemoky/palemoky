@@ -9,7 +9,7 @@
         aria-labelledby="descId"
       >
         <title id="titleId">Palemoky's GitHub Stats, Rank: A+</title>
-        <desc id="descId">Total Stars Earned: 3785, Total Commits  (last year) : 3317, Total PRs: 163, Total Issues: 29, Contributed to (last year): 12</desc>
+        <desc id="descId">Total Stars Earned: 3793, Total Commits  (last year) : 3322, Total PRs: 163, Total Issues: 29, Contributed to (last year): 12</desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
@@ -73,7 +73,7 @@
         stroke-dashoffset: 251.32741228718345;
       }
       to {
-        stroke-dashoffset: 21.464819401227324;
+        stroke-dashoffset: 21.46248718886303;
       }
     }
   
